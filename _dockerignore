@@ -1,0 +1,25 @@
+# Build output
+target/
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+*.iml
+.vscode
+*.swp
+*.swo
+
+# Maven wrapper (we copy these explicitly; ignore local overrides)
+# .mvn/wrapper/maven-wrapper.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+*.temp
