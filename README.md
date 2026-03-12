@@ -62,6 +62,8 @@ You can build and run the application locally using Maven or with Docker. A simp
 docker-compose up --build
 ```
 
+You can also run `docker-compose build` explicitly, or add `-d` to the command above to run containers in the background. Make sure you have a `docker-compose.yml` pointing at the `Dockerfile` (example below:
+
 You can add `-d` to the command to run containers in the background. Make sure you have a `docker-compose.yml` pointing at the `Dockerfile` (example below:
 
 ```yaml
@@ -95,7 +97,15 @@ services:
 
 ## Testing
 
-The codebase includes a suite of unit tests written with **JUnit 5** and **Mockito**.  Tests cover service logic and can be executed by running:
+The codebase includes a suite of unit tests written with **JUnit 5** and **Mockito**. Tests include:
+
+- **Service layer** – e.g. `UserServiceImpl`, `CompanyServiceImpl`, `ApplicationServiceImpl`, `ReviewServiceImpl`, `JobPostServiceImpl`, `UserDataServiceImpl` with Mockito mocks.
+- **Controller layer** – `@WebMvcTest` + `MockMvc` coverage for every REST controller (`AuthController`, `CompanyRestController`, `UserRestController`, `ApplicationRestController`, `ReviewRestController`, `JobPostRestController`), including JSON assertions and Spring Security scenarios (authenticated user, role checks).
+- **Repository slice** – `@DataJpaTest` for each repository to verify custom query methods against an in‑memory database.
+
+These examples show how to mock dependencies, verify interactions, and assert JSON responses. You can run the entire suite using:
+
+These examples show how to mock dependencies, verify interactions, and assert JSON responses. You can run the entire suite using:
 
 ```bash
 mvn test
