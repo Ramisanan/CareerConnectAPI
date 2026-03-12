@@ -54,6 +54,32 @@ This project is designed as the backend of a job portal platform where employers
 
 ---
 
+## Getting Started
+
+You can build and run the application locally using Maven or with Docker. A simple `docker-compose` command will build and start the service along with any dependent containers (e.g. database).
+
+```bash
+docker-compose up --build
+```
+
+You can add `-d` to the command to run containers in the background. Make sure you have a `docker-compose.yml` pointing at the `Dockerfile` (example below:
+
+```yaml
+version: "3.8"
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=careerconnect
+``` 
+
 ## Tech Stack
 
 - **Java**
@@ -65,6 +91,17 @@ This project is designed as the backend of a job portal platform where employers
 - **Maven**
 - **REST APIs**
 - **MySQL / PostgreSQL** depending on configuration
+
+
+## Testing
+
+The codebase includes a suite of unit tests written with **JUnit 5** and **Mockito**.  Tests cover service logic and can be executed by running:
+
+```bash
+mvn test
+```
+
+Additional tests should be added under `src/test/java` as the project grows.
 
 ---
 
